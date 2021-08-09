@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <Version>1.0.1</Version>
+    <Authors>Anton Bergåker</Authors>
+    <Product>Doodle Digits</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\grid.png" />
+    <None Remove="Resources\GridPaper.png" />
+    <None Remove="Resources\PatrickHand-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DoodleDigits.Core\DoodleDigits.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\grid.png" />
+    <Resource Include="Resources\PatrickHand-Regular.ttf" />
+  </ItemGroup>
+
+</Project>

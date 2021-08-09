@@ -1,0 +1,97 @@
+﻿<Window x:Class="DoodleDigits.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DoodleDigits"
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
+        mc:Ignorable="d"
+        Title="Doodle Digits" Height="200" Width="400"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}" SizeChanged="Window_SizeChanged" Closing="Window_Closing">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.Background>
+                    <ImageBrush ImageSource="/Resources/grid.png" TileMode="Tile" Stretch="None" AlignmentY="Top" ViewportUnits="Absolute" Viewport="0 0 666 666">
+                        <ImageBrush.Transform>
+                            <ScaleTransform CenterY="2" ScaleX="0.277777" ScaleY="0.277777"/>
+                        </ImageBrush.Transform>
+                    </ImageBrush>
+                </Grid.Background>
+                <TextBox x:Name="RichTextBox" FontSize="19" TextChanged="RichTextBoxTextChanged" AcceptsReturn="True" TextWrapping="Wrap"
+                         Background="Transparent"
+                         TextBlock.LineHeight="37" 
+                         TextBlock.LineStackingStrategy="BlockLineHeight"
+                         VerticalScrollBarVisibility="Disabled">
+                    <TextBox.ContextMenu>
+                        <ContextMenu 
+                            TextBlock.LineHeight="12"
+                        >
+                            <MenuItem 
+                                Header="Cut"
+                                Command="Cut"
+                            />
+                            <MenuItem 
+                                Header="Copy" 
+                                Command="Copy"
+                            />
+                            <MenuItem 
+                                Header="Paste"
+                                Command="Paste"
+                            />
+                            <Separator/>
+                            <MenuItem 
+                                Header="Select All"
+                                Command="SelectAll"
+                            />
+                            <Separator/>
+                            <MenuItem 
+                                Header="Undo"
+                                Command="Undo"
+                            />
+                            <MenuItem 
+                                Header="Redo"
+                                Command="Redo" 
+                            />
+                            <Separator/>
+                            <MenuItem 
+                                Header="Clear All Text"
+                                Click="ClickClear" 
+                            />
+                        </ContextMenu>
+                    </TextBox.ContextMenu>
+                </TextBox>
+                <ItemsControl ItemsSource="{Binding Path=ResultPresenter.Results}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Content, Mode=OneWay}" IsReadOnly="True" Background="Transparent"
+                                 FontFamily="Resources/#Patrick Hand"
+                                 FontSize="18"
+                                 Height="24"
+                                 VerticalAlignment="Top"
+                                 Foreground="DodgerBlue">
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="IsReadOnly" Value="True" />
+                                        <Setter Property="BorderThickness" Value="0" />
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Grid />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="ContentPresenter">
+                            <Setter Property="Margin" Value="{Binding Path=Margin}" />
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                </ItemsControl>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>
